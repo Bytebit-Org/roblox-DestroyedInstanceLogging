@@ -3,6 +3,6 @@
 registry = "test"
 
 [[package]]
-name = "bytebit/player-statistics"
-version = "1.0.3"
+name = "bytebit/destroyed-instance-logging"
+version = "0.0.1"
 dependencies = []
