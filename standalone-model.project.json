@@ -1,5 +1,5 @@
 {
-	"name": "player-statistics",
+	"name": "destroyed-instance-logging",
 	"globIgnorePaths": [
 		"**/package.json",
 		"**/tsconfig.json"
