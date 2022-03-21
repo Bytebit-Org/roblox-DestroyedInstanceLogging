@@ -1,17 +1,17 @@
 # Destroyed Instance Logging
 <p align="center">
-	<a href="https://github.com/Bytebit-Org/roblox-DestroyedInstanceLogging/actions">
-        <img src="https://github.com/Bytebit-Org/roblox-DestroyedInstanceLogging/workflows/CI/badge.svg" alt="CI status" />
-    </a>
-	<a href="http://makeapullrequest.com">
-		<img src="https://img.shields.io/badge/PRs-welcome-blue.svg" alt="PRs Welcome" />
-	</a>
-	<a href="https://opensource.org/licenses/MIT">
-		<img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" />
-	</a>
-	<a href="https://discord.gg/QEz3v8y">
-		<img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" alt="Discord server" />
-	</a>
+  <a href="https://github.com/Bytebit-Org/roblox-DestroyedInstanceLogging/actions">
+      <img src="https://github.com/Bytebit-Org/roblox-DestroyedInstanceLogging/workflows/CI/badge.svg" alt="CI status" />
+  </a>
+  <a href="http://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-blue.svg" alt="PRs Welcome" />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" />
+  </a>
+  <a href="https://discord.gg/QEz3v8y">
+    <img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" alt="Discord server" />
+  </a>
 </p>
 
 Destroyed Instance Logging is just a simple set of functions for making consistent destroyed instance logs.
@@ -44,70 +44,70 @@ Documentation can be found [here](https://github.com/Bytebit-Org/roblox-Destroye
 Here's a simple example of a destroyable class with a couple public methods on it that we want to make sure logs consistently when a destroyed instance is misused.
 
 <details>
-    <summary>roblox-ts example</summary>
+  <summary>roblox-ts example</summary>
 
-    ```ts
-    import { assertNotDestroyed, warnAlreadyDestroyed } from "@rbxts/destroyed-instance-logging";
+  ```ts
+  import { assertNotDestroyed, warnAlreadyDestroyed } from "@rbxts/destroyed-instance-logging";
 
-    export class Destroyable {
-        private isDestroyed = false;
+  export class Destroyable {
+    private isDestroyed = false;
 
-        public destroy() {
-            if (this.isDestroyed) {
-                warnAlreadyDestroyed(this);
-                return;
-            }
+    public destroy() {
+      if (this.isDestroyed) {
+        warnAlreadyDestroyed(this);
+        return;
+      }
 
-            // destruction logic
-            this.isDestroyed = true;
-        }
-
-        public foobar() {
-            assertNotDestroyed(this.isDestroyed, this);
-
-            // foobar logic
-        }
+      // destruction logic
+      this.isDestroyed = true;
     }
-    ```
+
+    public foobar() {
+      assertNotDestroyed(this.isDestroyed, this);
+
+      // foobar logic
+    }
+  }
+  ```
 </details>
 
 <details>
-    <summary>Luau example</summary>
+  <summary>Luau example</summary>
 
-    ```lua
-    local assertNotDestroyed = require(path.to.modules["destroyed-instance-logging"]).assertNotDestroyed
-    local warnAlreadyDestroyed = require(path.to.modules["destroyed-instance-logging"]).warnAlreadyDestroyed
+  ```lua
+  local assertNotDestroyed = require(path.to.modules["destroyed-instance-logging"]).assertNotDestroyed
+  local warnAlreadyDestroyed = require(path.to.modules["destroyed-instance-logging"]).warnAlreadyDestroyed
 
-    local Destroyable = {}
-    Destroyable.__index = Destroyable
+  local Destroyable = {}
+  Destroyable.__index = Destroyable
 
-    function new()
-        local self = {}
-        setmetatable(self, Destroyable)
+  function new()
+    local self = {}
+    setmetatable(self, Destroyable)
 
-        self.isDestroyed = false
+    self.isDestroyed = false
 
-        return self
+    return self
+  end
+
+  function Destroyable:destroy()
+    if self.isDestroyed then
+      warnAlreadyDestroyed(self)
+      return
     end
 
-    function Destroyable:destroy()
-        if self.isDestroyed then
-            warnAlreadyDestroyed(self)
-            return
-        end
+    -- destruction logic
+    self.isDestroyed = true
+  end
 
-        -- destruction logic
-        self.isDestroyed = true
-    end
+  function Destroyable:foobar()
+    assertNotDestroyed(self.isDestroyed, self)
 
-    function Destroyable:foobar()
-        assertNotDestroyed(self.isDestroyed, self)
+    -- foobar logic
+  end
 
-        -- foobar logic
-    end
-
-    return {
-        new = new
-    }
-    ```
+  return {
+    new = new
+  }
+  ```
 </details>
