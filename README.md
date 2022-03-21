@@ -44,7 +44,7 @@ Documentation can be found [here](https://github.com/Bytebit-Org/roblox-Destroye
 Here's a simple example of a destroyable class with a couple public methods on it that we want to make sure logs consistently when a destroyed instance is misused.
 
 <details>
-  <summary>roblox-ts example</summary>
+    <summary>roblox-ts example</summary>
 
     ```ts
     import { assertNotDestroyed, warnAlreadyDestroyed } from "@rbxts/destroyed-instance-logging";
@@ -72,8 +72,8 @@ Here's a simple example of a destroyable class with a couple public methods on i
 </details>
 
 <details>
-  <summary>Luau example</summary>
-  
+    <summary>Luau example</summary>
+
     ```lua
     local assertNotDestroyed = require(path.to.modules["destroyed-instance-logging"]).assertNotDestroyed
     local warnAlreadyDestroyed = require(path.to.modules["destroyed-instance-logging"]).warnAlreadyDestroyed
