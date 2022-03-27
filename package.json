@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/destroyed-instance-logging",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Just a simple set of functions for making consistent destroyed instance logs.",
   "main": "out/init.lua",
   "scripts": {
