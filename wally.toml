@@ -1,7 +1,7 @@
 [package]
 name = "bytebit/destroyed-instance-logging"
 description = "Just a simple set of functions for making consistent destroyed instance logs."
-version = "1.0.3"
+version = "1.0.4"
 license = "MIT"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
